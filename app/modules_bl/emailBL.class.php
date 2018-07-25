@@ -35,10 +35,10 @@
                     {
                         return $emptyemailfieldMsg;
                     }
-                    /*else if()
+                    else if(in_array($email,$this->GetEmail))
                     {
                         return $emailduplicatedMsg;
-                    }*/
+                    }
                 }
             }
             else
@@ -49,13 +49,7 @@
         }
 
         public function InsertEmail()
-        {
-            //$email = $_POST["email"];
-
-            //$validatedEmail = $this->ServerValidationMessage($email);
-            
-            //if ($validatedEmail == "Uspešno ste uneli email i prijavili se na naš newslettter!")
-            //{   
+        { 
                 $id_newsletter = "";
                 $email = $_POST["email"];
                 $insertedDate = date("d-M-Y H:i:s");
@@ -67,7 +61,7 @@
                 
                 $emailDAL = new EmailDAL();
                 $id = $emailDAL->InsertEmailDAL($emailDM);
-            //}
+            
         }
 
         private function MapEmailBM2DM($emailBM)
@@ -79,6 +73,31 @@
                                                 $emailBM->GetID_STATUS_BM()
                                             );
             return $emailDM;
+        }
+
+        public function GetEmail()
+        {
+            $emailDAL = new EmailDAL();
+            $emailsDM = $emailDAL->GetEmailDAL();
+
+            $emails = $this->MapEmailDM2BM($emailsDM);
+
+            return $emails;
+        }
+
+        private function MapEmailDM2BM($emailsDM)
+        {
+            if(isset($emailsDM) && $emailsDM != null && count($emailsDM) > 0)
+            {
+                foreach($emailsDM as $emailDM)
+                {
+                    $emailBM = new EmailBM();
+                    $emailBM->SetEMAIL_BM($emailDM->GetEMAIL_DM());
+                    $emails[] = $emailBM;
+                }
+            }
+
+            return isset($emails) ? $emails : null;
         }
     }
 ?>

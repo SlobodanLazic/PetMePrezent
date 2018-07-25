@@ -39,5 +39,21 @@
 
             return $id;
         }
+
+        public function GetEmailDAL()
+        {
+            $query = "  SELECT n.EMAIL
+                        FROM NEWSLETTER n
+                        ";
+            $emailsArray = DBConn::Select($query);
+            if ($emailsArray != null && is_array($emailsArray) && count($emailsArray) > 0)
+            {
+                $emailDM = new EmailDM();
+                $emailDM->SetEMAIL_DM($emailsArray["EMAIL"]);
+                $emailsDM[] = $emailDM;
+            }
+
+            return isset($emailsDM) ? $emailsDM : null;
+        }
     }
 ?>
