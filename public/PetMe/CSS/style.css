@@ -1,0 +1,376 @@
+* {
+	font-family: 'Raleway', sans-serif;
+	color: #0485A9;
+	}													/*Navigacija*/
+header {
+	display: block;
+	background-color: #fff;
+	opacity: 0.9;
+	width: 100%;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	box-shadow: 0px 0px 5px #5DD8B4;
+}
+
+.logo {
+	display: inline-block;
+	margin-left: 70px;
+}
+
+nav {
+    margin-top: -75px;
+    margin-right: 70px;
+    text-align: right;
+}
+
+a {
+	display: inline-block;
+	color: #0485A9;
+	text-decoration: none;
+}
+
+a:hover { 
+	opacity: 0.8;
+	text-decoration: none;
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav ul li {
+	display: inline-block;
+	font-size: 22px;
+	text-shadow: 2px 2px 5px #F1EDED;
+	box-shadow: 5px 5px 5px #F1EDED;
+	border-radius: 20px;
+}
+nav ul li:hover {
+	box-shadow: 5px 5px 10px #999;
+	opacity: 1;
+}
+nav ul li a {
+	padding: 10px;
+}
+
+nav ul li: nth-child (2) {
+	margin: 0 10px;
+} 
+																			/*O nama*/
+
+.o-nama {
+	background: url("../Slike/pas.jpg");
+	padding: 5px 0 15px 0;
+	height: 350px;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-style: italic;
+}
+
+.o-nama section {
+	text-align: center;
+	margin: 3% 5% 0 5%;
+}
+
+.o-nama section h1 {
+	font-size: 35px;
+	margin-top: 100px;
+	color: #5DD8B4;
+	position: relative;
+	animation: heading;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+@keyframes heading {
+	0% {top: -50px;}
+	100% {top: 15px;}
+}
+.o-nama section p {
+	font-size: 20px;
+	color: #5DD8B4;
+	letter-spacing: 1.2pt;
+	padding-top: 5px;
+	position: relative;
+	animation-name: content;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+@keyframes content {
+	0% {left: -1000px;}
+	100% {left: 0px;}
+}
+
+.obavestenje {
+	text-align: center;
+	color: #333;
+}
+
+.obavestenje section p {
+	font-size: 18px;
+}
+
+.obavestenje section button {
+	background: #5dd8b4;
+	color: #fff;
+	border: none;
+	padding: 15px 20px;
+}
+
+.obavestenje section button:hover {
+	text-shadow: 2px 2px 5px #F1EDED;
+	box-shadow: 5px 5px 5px #F1EDED;
+	box-shadow: 5px 5px 10px #999;
+}
+
+.obavestenje a {
+	padding: 10px 20px 0 20px;
+}
+
+.obavestenje a:hover {
+	box-shadow: 5px 5px 5px #F1EDED;
+	box-shadow: 5px 5px 10px #999;
+	border-radius: 100px;
+}
+
+#btnPopup {
+	border-radius: 20px;
+	animation-duration: 3s;
+	animation-delay: 3s;
+	animation-fill-mode: forwards;
+	transition-property: transform;
+	transition-duration: 1s;
+	transition: transform 2s;
+}
+#btnPopup:hover {
+	transform: rotateY(180deg);
+}
+@keyframes btn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+.popup {
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popupContent {
+	background-color: #fff;
+	margin: auto;
+	margin-top: 150px;
+	width: 300px;
+	height: 300px;
+}
+
+.popupHeader {
+	background-color: #333;
+	color: #fff;
+	font-size: 25px;
+	padding: 1px 0;
+	
+}
+
+.popupHeader h3 {
+	margin-left: 12px;
+}
+
+.popupContent form {
+	padding-top: 15px;
+	margin-top: 20px;
+}
+
+#email {
+	padding: 10px 20px;
+}
+
+#email_error_message {
+	color: red;
+	font-size: 14px;
+}
+
+#submit {
+	padding: 15px 20px;
+	margin-top: 20px;
+	background-color: #5dd8b4;
+	color: #fff;
+	border: none;
+}
+
+#submit:hover {
+	box-shadow: 5px 5px 5px #F1EDED;
+	box-shadow: 5px 5px 10px #999;
+}
+
+.closePopup {
+	color: #fff;
+	float: right;
+	font-size: 35px;
+	margin-right: 10px;
+	
+}
+
+.closePopup:hover, .closePopup:focus {
+   color: #000;
+   cursor: pointer;
+}
+
+.emailApproved {
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	overflow: auto;
+	background: rgba(0,0,0,0.5);
+}
+
+.approvedContent {
+	background-color: #fff;
+	margin: auto;
+	margin-top: 200px;
+	width: 300px;
+	height: 150px;
+	text-align: center;
+}
+
+.approvedContent img {
+	padding: 10px;
+}
+
+.approvedBtn {
+	background-color: #5dd8b4;
+	border: none;
+	color: #fff;
+}
+
+.approvedBtn:hover {
+	box-shadow: 5px 5px 5px #F1EDED;
+	box-shadow: 5px 5px 10px #999;
+}
+.drustvene-mreze {
+	display: block;
+	width: 50%;
+	margin-left: 25%; 
+}
+.ikonice {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+}
+
+																			/*Tim*/
+.wrapper{
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	/*padding: 16px;*/
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 16px;
+	grid-auto-rows: 450px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.main-h1 {
+	text-align: center;
+	padding-top: 60px;
+}
+
+section img {
+	display: block;
+	width: 100%;
+	height: 350px;
+	padding: 8px;
+	border-radius: 30%;
+	cursor: pointer;
+	object-fit: cover;
+}
+section img:hover {
+	opacity: .8;
+}
+.ime-prezime {
+	text-align: center;
+	font-size: 20px;
+}
+.radno-mesto {
+	text-align: center;
+	font-size: 15px;
+	color: #5DD8B4;
+}
+.biografija {
+	display: none;
+}
+								/* Animacije */
+
+article.team-member:hover img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: auto;
+    animation-name: team-member-img;
+    animation-duration: 2s;
+}
+article.team-member:hover p.biografija {
+    display: block;
+    text-align: justify;
+    margin: auto;
+    border-top: 3px solid;
+    /*border-color: #0485A9;*/
+    /*color: #5DD8B4;*/
+    font-style: italic;
+    padding: 16px 32px;
+    letter-spacing: 1.2pt;
+    font-size: 11px;
+    animation-name: team-member-bio;
+    animation-duration: 2s;
+}
+
+@keyframes team-member-img {
+    from {
+        display: block;
+	    width: 100%;
+	    height: 350px;
+	    padding: 8px;
+	    border-radius: 30%;
+	    cursor: pointer;
+    }
+    to {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        display: block;
+        margin: auto;
+    }
+}
+
+@keyframes team-member-bio {
+    from {
+        display: none;
+        opacity: 0;
+    }
+    to {
+        display: block;
+        opacity: 1;
+    }
+}
+
+																		    /*Partneri*/
+
+																			/*Footer - kontakt*/
+
+
+
+
