@@ -10,13 +10,17 @@
 </head>
 <body>
     <?php
-        include_once("../app/emailBL.php");
-        $EmailBL = new EmailBL;
+        include_once("../app/modules_bl/emailBL.class.php");
+        $EmailBL = new EmailBL();
         $email = isset($_POST["email"]) ? $_POST["email"] : '';
-        $result = $EmailBL->ValidateEmail($email);
+        $result = $EmailBL->ServerValidationMessage($email);
         if(isset($_POST["submit"]))
         {
             echo $result;
+            if ($result == "Uspešno ste uneli email i prijavili se na naš newslettter!")
+            {
+                $EmailBL->InsertEmail();
+            } 
         }
     ?>
     <form method="POST" action="#">

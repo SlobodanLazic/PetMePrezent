@@ -1,18 +1,13 @@
 <?php
-    include_once("emailDAL.php");
+    include_once "../app/db/modules/emailDAL.class.php";
+    include_once "../app/db/classes/emailDM.class.php";
+    include_once "../app/classes_bl/emailBM.class.php";
     
     class EmailBL
     {
-        private $id_newsletter;
-        private $email;
-        private $insert_date;
-
-        public function ValidateEmail($email)
+        
+        public function ServerValidationMessage($email)
         {
-            $emptyemailfieldMsg = "Unesite email!";
-            $emailfalseMsg = "Morate uneti ispravnu email adresu!";
-            $emailtrueMsg = "Uspešno ste uneli email i prijavili se na naš newslettter!";
-            $emailduplicatedMsg = "Vi ste se već prijavili na naš newletter sa ovom email adresom";
             if($_SERVER["REQUEST_METHOD"] == "POST")
             {
                 if(is_array($email) || is_numeric($email) || is_bool($email) || is_float($email) || is_file($email) || is_dir($email) || is_int($email))
@@ -21,8 +16,12 @@
                 }
                 else
                 {
-                
+                    $emailtrueMsg = "Uspešno ste uneli email i prijavili se na naš newslettter!";
+                    $emailfalseMsg = "Morate uneti ispravnu email adresu!";
+                    $emptyemailfieldMsg = "Unesite email!";                    
+                    $emailduplicatedMsg = "Vi ste se već prijavili na naš newletter sa ovom email adresom";
                     $email=trim(strtolower($email));
+                    
                     if(filter_var($email, FILTER_VALIDATE_EMAIL) !== false && $email != "")
                     {
                         return $emailtrueMsg;
@@ -44,21 +43,42 @@
             }
             else
             {
-                return "";
+                return "Došlo je do greške.Molimo pokušajte opet.";
             }
             
         }
 
-        public function SetEmailandInsertDate($email)
+        public function InsertEmail()
         {
-            $validatedEmail = $this->ValidateEmail($email);
+            //$email = $_POST["email"];
+
+            //$validatedEmail = $this->ServerValidationMessage($email);
             
-            if ($validatedEmail == $emailtrueMsg)
-            {
-                $this->id_newsletter = $id_newsletter;
-                $this->email = $email;
-                $this->insert_date = date("d-M-Y H:i:s");
-            }
+            //if ($validatedEmail == "Uspešno ste uneli email i prijavili se na naš newslettter!")
+            //{   
+                $id_newsletter = "";
+                $email = $_POST["email"];
+                $insertedDate = date("d-M-Y H:i:s");
+                $id_status = 1;
+                
+                $emailBM = new EmailBM();
+                $emailBM->SetEmailAndInsertDateBM($id_newsletter, $email, $insertedDate, $id_status);
+                $emailDM = $this->MapEmailBM2DM($emailBM);
+                
+                $emailDAL = new EmailDAL();
+                $id = $emailDAL->InsertEmailDAL($emailDM);
+            //}
+        }
+
+        private function MapEmailBM2DM($emailBM)
+        {
+            $emailDM = new EmailDM();
+            $emailDM->SetEmailAndInsertDateDM(  $emailBM->GetID_NEWSLETTER_BM(),
+                                                $emailBM->GetEMAIL_BM(),
+                                                $emailBM->GetINSERT_DATE_BM(),
+                                                $emailBM->GetID_STATUS_BM()
+                                            );
+            return $emailDM;
         }
     }
 ?>
