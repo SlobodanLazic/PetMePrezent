@@ -11,21 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="CSS/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="JavaScript/main.js"></script>
-		<script type="text/javascript" src="JavaScript/index.js"></script>
-		<script type="text/javascript">
-			var xmlhttp = new XMLHttpRequest();
-			function GetEmailServerMsg()
-			{
-				xmlhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					myObj = JSON.parse(this.responseText);
-					document.getElementById("email_error_message2").innerHTML = myObj;
-					}
-				};
-				xmlhttp.open("GET", "petme.php", true);
-				xmlhttp.send();
-			}
-		</script>
+        <script type="text/javascript" src="JavaScript/index.js"></script>
 	</head>
 	
 	<body>
@@ -66,9 +52,8 @@
 	        		<div class="popupHeader">
 	        			<span class="closePopup">&times;</span>
 	        			<h3>Prijavi se</h3>
-					</div>
-					<form method="POST" action="petme.php" onsubmit ="GetEmailServerMsg()">
-						<span class="error_form" id="email_error_message2"></span>
+	        		</div>
+	        		<form method="POST" action="petme.php">
                         <input type="email" id="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,3}$" required>
                         <br>
                         <span class="error_form" id="email_error_message"></span>
@@ -80,7 +65,7 @@
             <div id="popupApproved" class="emailApproved">
             	<div class="approvedContent">
             		<h3>Uspešno ste se prijavili!</h3> 
-            		<img src="Slike/potvrda.png" width="50px" height="50px">
+            		<img src="Slike/potvrda.png">
             		<br>
             		<button id="approvedBtn" type="button" name="button">OK</button>           		
             	</div>

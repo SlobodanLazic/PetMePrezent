@@ -60,7 +60,6 @@ nav ul li: nth-child (2) {
 																			/*O nama*/
 
 .o-nama {
-	background: url("../Slike/pas.jpg");
 	padding: 5px 0 15px 0;
 	height: 350px;
 	width: 100%;
@@ -242,12 +241,20 @@ nav ul li: nth-child (2) {
 	margin: auto;
 	margin-top: 200px;
 	width: 300px;
-	height: 150px;
+	height: 200px;
 	text-align: center;
+	padding: 10px 0 20px;
 }
 
 .approvedContent img {
 	padding: 10px;
+	height: 60px;
+	width: 60px;
+	margin: auto;
+}
+
+.approvedContent img:hover {
+   opacity: 1.0;
 }
 
 .approvedBtn {
@@ -452,9 +459,10 @@ article.kontakt section ul {
     display: inline-block;
 }
 article.kontakt section ul li {
-/*    display: inline-block;*/
-    margin: 1em;
+   /*display: inline-block;*/
+    padding-top: 15px;
 }
+
 																			/*Footer - kontakt*/
 
 footer {
@@ -463,6 +471,3 @@ footer {
     padding: 27px;
     text-align: center;
 }
-
-
-

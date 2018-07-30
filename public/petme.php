@@ -1,20 +1,22 @@
 <?php
-    
-    include_once("../app/modules_bl/emailBL.class.php");
     header("Content-Type: application/json; charset=UTF-8");
+    include_once("../app/modules_bl/emailBL.class.php");
+    
     $EmailBL = new EmailBL();
     $ObjectsFromBM = $EmailBL->GetEmail();
 
-    $email = isset($_POST["email"]) ? $_POST["email"] : '';
+    foreach ($ObjectsFromBM as $ObjectFromBM)
+    {
+        $arrayofEmails[]= $ObjectFromBM->GetEMAIL_BM();
+    }
+
+    $email = isset($_POST["email"]) ? $_POST["email"] : "";
 
     $validatedEmail = ServerValidationMessage($email);
-
     json_encode($validatedEmail);
-    echo ($validatedEmail);
+    print ($validatedEmail);
 
     function ServerValidationMessage($email)
-    {
-    if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         if(is_array($email) || is_numeric($email) || is_bool($email) || is_float($email) || is_file($email) || is_dir($email) || is_int($email))
         {
@@ -58,10 +60,6 @@
             }
             
         }
+         
     }
-    else
-    {
-        return "Došlo je do greške.Molimo pokušajte opet.";
-    }   
-}
 ?>
