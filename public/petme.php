@@ -1,7 +1,8 @@
 <?php
     header("Content-Type: application/json; charset=UTF-8");
     include_once("../app/modules_bl/emailBL.class.php");
-    
+
+    $email = isset($_POST["email"]) ? $_POST["email"] : "";
     $EmailBL = new EmailBL();
     $ObjectsFromBM = $EmailBL->GetEmail();
 
@@ -9,12 +10,11 @@
     {
         $arrayofEmails[]= $ObjectFromBM->GetEMAIL_BM();
     }
-
-    $email = isset($_POST["email"]) ? $_POST["email"] : "";
-
     $validatedEmail = ServerValidationMessage($email);
-    json_encode($validatedEmail);
-    print ($validatedEmail);
+    $objectofValidatedemail->msg = "$validatedEmail";
+    
+    json_encode($objectofValidatedemail);
+    print ($objectofValidatedemail);
 
     function ServerValidationMessage($email)
     {
@@ -58,8 +58,6 @@
             {
                 return $emptyemailfieldMsg;
             }
-            
-        }
-         
+        }        
     }
 ?>
