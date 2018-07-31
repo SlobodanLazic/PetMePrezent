@@ -12,6 +12,17 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="JavaScript/main.js"></script>
         <script type="text/javascript" src="JavaScript/index.js"></script>
+        <script type="text/javascript">
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var myObj = this.responseText;
+                document.getElementById("email_error_message").innerHTML = myObj;
+            }
+            };
+            xmlhttp.open("GET", "petme.php", true);
+            xmlhttp.send();
+        </script>
 	</head>
 	
 	<body>
