@@ -13,15 +13,18 @@
 		<script type="text/javascript" src="JavaScript/main.js"></script>
         <script type="text/javascript" src="JavaScript/index.js"></script>
         <script type="text/javascript">
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var myObj = this.responseText;
-                document.getElementById("email_error_message").innerHTML = myObj;
+            function GetValidation()
+            {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = this.responseText;
+                    document.getElementById("email_error_message").innerHTML = myObj;
+                }
+                };
+                xmlhttp.open("GET", "petme.php", true);
+                xmlhttp.send();
             }
-            };
-            xmlhttp.open("GET", "petme.php", true);
-            xmlhttp.send();
         </script>
 	</head>
 	
@@ -69,7 +72,7 @@
                         <br>
                         <span class="error_form" id="email_error_message"></span>
                         <br> 
-                        <input type="submit" id="submit" name="submit" value="Pošalji">
+                        <input type="submit" id="submit" name="submit" onclick="GetValidation()" value="Pošalji">
                     </form>
 	        	</div>
             </div>
