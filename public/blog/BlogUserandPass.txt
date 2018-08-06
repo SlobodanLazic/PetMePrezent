@@ -1,0 +1,4 @@
+
+Username	root
+Password	root
+Note that password carefully! It is a random password that was generated just for you.
