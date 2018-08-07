@@ -45,12 +45,16 @@
             $query = "  SELECT n.EMAIL
                         FROM NEWSLETTER n
                         ";
-            $emailsArray = DBConn::Select($query);
-            if ($emailsArray != null && is_array($emailsArray) && count($emailsArray) > 0)
+            $emailsResult = DBConn::Select($query);
+            if ($emailsResult != null && is_array($emailsResult) && count($emailsResult) > 0)
             {
-                $emailDM = new EmailDM();
-                $emailDM->SetEMAIL_DM($emailsArray["EMAIL"]);
-                $emailsDM[] = $emailDM;
+                foreach ($emailsResult as $emailResult)
+                {
+                    $emailDM = new EmailDM();
+                    $emailDM->SetEMAIL_DM($emailResult["EMAIL"]);
+                    $emailsDM[] = $emailDM;
+                }
+                
             }
 
             return isset($emailsDM) ? $emailsDM : null;

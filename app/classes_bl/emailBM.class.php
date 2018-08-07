@@ -5,7 +5,7 @@
         private $EMAIL_BM;
         private $INSERT_DATE_BM;
         private $ID_STATUS_BM;
-        
+
         public function SetEmailAndInsertDateBM($ID_NEWSLETTER_BM, $EMAIL_BM, $INSERT_DATE_BM, $ID_STATUS_BM)      
         {
             $this->ID_NEWSLETTER_BM = $ID_NEWSLETTER_BM;
