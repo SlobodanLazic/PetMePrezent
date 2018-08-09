@@ -17,10 +17,10 @@
             {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = this.responseText;
-                    document.getElementById("email_error_message").innerHTML = myObj;
-                }
+                    if (this.readyState == 4 && this.status == 200) {
+                    var responseObject = JSON.parse(this.responseText);
+                    document.getElementById("email_error_message").innerHTML = responseObject.validationMessage;
+                    }
                 };
                 xmlhttp.open("GET", "petme.php", true);
                 xmlhttp.send();
@@ -72,7 +72,7 @@
                         <br>
                         <span class="error_form" id="email_error_message"></span>
                         <br> 
-                        <input type="submit" id="submit" name="submit" onclick="GetValidation()" value="Pošalji">
+                        <button type="submit" id="submit" name="submit" onclick="GetValidation()">Pošalji</button>
                     </form>
 	        	</div>
             </div>

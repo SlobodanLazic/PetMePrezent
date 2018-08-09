@@ -10,10 +10,10 @@
     {
         $arrayofEmails[]= $ObjectFromBM->GetEMAIL_BM();
     }
-    $validatedEmail = ServerValidationMessage($email);
+    $returnedMsg = ServerValidationMessage($email);
+    $validatedEmail = array("validationMessage" => "$returnedMsg");
     
-    json_encode($validatedEmail);
-    print ($validatedEmail);
+    print(json_encode($validatedEmail));
 
     function ServerValidationMessage($email)
     {
