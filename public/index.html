@@ -13,18 +13,20 @@
 		<script type="text/javascript" src="JavaScript/main.js"></script>
         <script type="text/javascript" src="JavaScript/index.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                $("form").on("submit", function(event){
-    
-                    $.post('petme.php', $(this).serialize(), function(data){
-                        $("#email_error_message").html(data);
-                    }).fail(function(){
-                        console.log("failed");
-                    });
-                    
-                    return false;
-                });   
+        $(document).ready(function(){
+            var form = $("#emailForm");
+
+            form.submit(function(event){
+
+                var emailValue = $("#email").val();
+
+                $.post("petme.php", { email: emailValue}, function(data){
+                    $("#email_approved_message").html(data);
+                });
+
+                event.preventDefault();
             });
+        });
         </script>
 	</head>
 	
@@ -67,7 +69,7 @@
 	        			<span class="closePopup">&times;</span>
 	        			<h3>Prijavi se</h3>
 	        		</div>
-	        		<form method="POST" action="petme.php">
+	        		<form method="POST" action="petme.php" id="emailForm">
                         <input type="email" id="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,3}$" required>
                         <br>
                         <span class="error_form" id="email_error_message"></span>
