@@ -10,6 +10,7 @@
     {
         $arrayofEmails[]= $ObjectFromBM->GetEMAIL_BM();
     }
+
     $returnedMsg = ServerValidationMessage($email);
     $validatedEmail = array("validationMessage" => "$returnedMsg");
     
@@ -23,7 +24,7 @@
         }
         else
         {
-            $email=trim(strtolower($email));
+            $email= trim(strtolower($email));
             $emailtrueMsg = "Uspešno ste uneli email i prijavili se na naš newslettter!";
             $emailfalseMsg = "Morate uneti ispravnu email adresu!";
             $emptyemailfieldMsg = "Unesite email!";                    

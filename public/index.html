@@ -13,18 +13,18 @@
 		<script type="text/javascript" src="JavaScript/main.js"></script>
         <script type="text/javascript" src="JavaScript/index.js"></script>
         <script type="text/javascript">
-            function GetValidation()
-            {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                    var responseObject = JSON.parse(this.responseText);
-                    document.getElementById("email_error_message").innerHTML = responseObject.validationMessage;
-                    }
-                };
-                xmlhttp.open("GET", "petme.php", true);
-                xmlhttp.send();
-            }
+            $(document).ready(function(){
+                $("form").on("submit", function(event){
+    
+                    $.post('petme.php', $(this).serialize(), function(data){
+                        $("#email_error_message").html(data);
+                    }).fail(function(){
+                        console.log("failed");
+                    });
+                    
+                    return false;
+                });   
+            });
         </script>
 	</head>
 	
@@ -40,7 +40,7 @@
 					<li id="navTim"><a href="#tim"><strong>tim</strong></a></li>
 					<li id="navPartneri"><a href="#partneri"><strong>partneri</strong></a></li>
 					<li id="navKontakt"><a href="#kontakt"><strong>kontakt</strong></a></li>
-					<li><a href="#"><strong>blog</strong></a></li>
+					<li><a href="blog/wordpress/"><strong>blog</strong></a></li>
 				</ul>
 			</nav>
 		</header>
@@ -71,8 +71,9 @@
                         <input type="email" id="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,3}$" required>
                         <br>
                         <span class="error_form" id="email_error_message"></span>
+                        <span class="approved_form" id="email_approved_message"></span>
                         <br> 
-                        <button type="submit" id="submit" name="submit" onclick="GetValidation()">Pošalji</button>
+                        <input type="submit" id="submit" name="submit" value="Pošalji">
                     </form>
 	        	</div>
             </div>

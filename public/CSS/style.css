@@ -22,6 +22,7 @@ nav {
     margin-top: -75px;
     margin-right: 70px;
     text-align: right;
+    padding: 15px;
 }
 
 a {
@@ -195,6 +196,11 @@ nav ul li: nth-child (2) {
 
 #email_error_message {
 	color: red;
+	font-size: 14px;
+}
+
+#email_approved_message {
+	color: #45FF00;
 	font-size: 14px;
 }
 
